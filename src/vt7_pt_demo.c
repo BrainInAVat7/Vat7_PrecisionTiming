@@ -21,30 +21,34 @@
 int main (void)
 {
 	uint64_t frequency = vt7_pt_frequency();
-	puts("\n\nVat7 Timing Abstraction Demo\n");
+	puts("\n\nVat7 Precision Timing Demo\n");
 	printf("Precision Timing Frequency: %"PRIu64"\n\n", frequency);
 
 	int seconds = 0;
 	uint64_t last_count = vt7_pt_count();
 	uint64_t next_tick_count = last_count + frequency;
-	uint64_t accumulated_count = last_count;
 	printf("Seconds: %d\n", seconds);
 	printf("Count: %"PRIu64"\n", last_count);
 
 	while (seconds < 20)
 	{
 		uint64_t count = vt7_pt_count();
-		accumulated_count += count - last_count;
-		if (accumulated_count >= next_tick_count)
+		if (count >= next_tick_count)
 		{
 			seconds++;
-			next_tick_count += frequency;
 			printf("Seconds: %d\n", seconds);
 			printf("Count: %"PRIu64"\n", count);
+			// This is overly cautious. It recovers if a tick
+			// gets skipped, but the program would have to
+			// stall for over a second for that to happen.
+			while(next_tick_count < count)
+			{
+				next_tick_count += frequency;
+			}
 		}
 		last_count = count;
 	}
-	puts("\nDemo Complete\n");
+	puts("\nVat7 Precision Timing Demo Complete\n");
 
 	return EXIT_SUCCESS;
 }
