@@ -1,7 +1,9 @@
-/* A simple manual test of the Vat7 timing abstraction
- *
- * Author: BrainInAVat7
+/* Author: BrainInAVat7
  * Date: 09/27/26
+ * COPYRIGHT: (c) 2026 BrainInAVat7
+ * LICENSE: AGPL-3.0
+ *
+ * A simple demo of the Vat7 Precision Timing Utility
  *
  * The program prints the precision timing frequency value,
  * then for 20 seconds will print the precision count value

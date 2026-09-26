@@ -1,5 +1,9 @@
 /* Author: BrainInAVat7
  * Date: 09/16/2026
+ * COPYRIGHT: (c) 2026 BrainInAVat7
+ * LICENSE: AGPL-3.0
+ *
+ * Vat7 Precision Timing Utility
  *
  * This timing helper provides a thin abstraction over
  * POSIX, Windows, and SDL3 functions to get a precision

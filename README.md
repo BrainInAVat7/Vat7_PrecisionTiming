@@ -1,5 +1,8 @@
 # Vat7 Precision Timing
 
+Copyright (c) 2026 BrainInAVat7
+License: AGPL-3.0
+
 A thin wrapper over POSIX, Windows, and SDL3 precision timing functions.
 
 ---
