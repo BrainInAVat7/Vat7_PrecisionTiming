@@ -63,6 +63,8 @@ any SDL3 supported environment.
 Clone the repository using:
 *git clone https://<no link>github.com/BrainInAVat7/Vat7_PrecisionTiming*
 
+Or, download and extract the zipped source code.
+
 The source files and header are then available for inclusion and
 compilation with local projects as the user sees fit.
 
