@@ -27,7 +27,7 @@ write and because this utility was split off from a more general
 SDL3 encapsulation layer. However, the SDL3 version of this utility
 can be useful if the program is already using SDL3 elsewhere and
 there is reason to allow it to be easily swapped out. Or it can serve
-as a portability fallback for non-Windows non-POSIX systems.
+as a portability fallback for non-Windows, non-POSIX systems.
 
 ---
 
@@ -44,20 +44,21 @@ development environment.
 
 
 ## Dependencies
-*This utility requires a 64bit environment*
+*This utility requires a 64bit environment or at least support of the
+uint64_t type in C.*
 
 The utility is compatible with windows and POSIX and has no
 dependencies beyond the OS environment itself.
 
 The SDL3 version requires SDL3 (obviously), and is compatible with
-and SDL3 supported 64bit environment.
+any SDL3 supported environment.
 
 ---
 
 
 ## Installation
 Clone the repository using:
-*git clone https://github.com/BrainInAVat7/Vat7_PrecisionTiming.git
+*git clone <span>https://github.com/BrainInAVat7/Vat7_PrecisionTiming.git</span>
 
 The source files and header are then available for inclusion and
 compilation with local projects as the user sees fit.
@@ -153,11 +154,12 @@ while (seconds <= seconds_to_run)
 
 ## Use of AI
 
-*No code was generated using AI tools in this project*
+*No code was generated using AI tools in this or any other Vat7 project*
 
 ChatGPT was used to generate the build.bat. It was given a hand-written
 makefile and prompted to generate a build.bat file that would exhibit
 equivalent behavior. The file was then audited for correctness.
 
 I have used AI as a resource for searching and explaining documentation,
-identifying bugs/typos, and general information gathering.
+identifying bugs/typos, and general information gathering. In short, I
+have used it as a faster and more amiable *Stack Exchange*.
