@@ -47,8 +47,6 @@ development environment.
 
 
 ## Dependencies
-*This utility requires a 64bit environment or at least support of the
-uint64_t type in C.*
 
 The utility is compatible with windows and POSIX and has no
 dependencies beyond the OS environment itself.
@@ -135,10 +133,9 @@ double seconds = (double)(vt7_pt_count() - initial_count) / (double)freq;
 
 ```C
 uint64_t freq = vt7_pt_frequency();
-uint64_t seconds_to_run = 10;
-uint64_t last_count = vt7_pt_count();
-uint64_t next_tick_count = last_count + freq;
+uint64_t next_tick_count = vt7_pt_count() + freq;
 uint64_t seconds = 0;
+uint64_t seconds_to_run = 10;
 
 while (seconds <= seconds_to_run)
 {
@@ -148,8 +145,7 @@ while (seconds <= seconds_to_run)
     if now >= next_tick_count)
     {
         seconds++;
-        // current count + count/second - (amount count overshot this tick)
-        next_tick_count = now + freq - (now - next_tick_count);
+        next_tick_count += freq;
     }
 }
 ```
