@@ -9,20 +9,20 @@ setlocal
 set "CFLAGS=/std:c17 /Iinclude /W4 /WX /permissive-"
 set "BIN=bin"
 
-if "%1"=="" goto win64
-if /I "%1"=="win64" goto win64
+if "%1"=="" goto windows
+if /I "%1"=="windows" goto windows
 if /I "%1"=="sdl" goto sdl
 if /I "%1"=="run-demo" goto run_demo
 if /I "%1"=="run-demo-sdl" goto run_demo_sdl
 if /I "%1"=="clean" goto clean
 
-echo Usage: build.bat [win64^|sdl^|run-demo^|run-demo-sdl^|clean]
+echo Usage: build.bat [windows^|sdl^|run-demo^|run-demo-sdl^|clean]
 exit /b 1
 
-:win64
+:windows
 if not exist "%BIN%" mkdir "%BIN%"
-cl %CFLAGS% /Fe:"%BIN%\vt7_pt_demo_win64.exe" ^
-    src\vt7_pt_win64.c ^
+cl %CFLAGS% /Fe:"%BIN%\vt7_pt_demo_windows.exe" ^
+    src\vt7_pt_windows.c ^
     src\vt7_pt_demo.c
 exit /b %ERRORLEVEL%
 
@@ -35,9 +35,9 @@ cl %CFLAGS% /Fe:"%BIN%\vt7_pt_demo_sdl.exe" ^
 exit /b %ERRORLEVEL%
 
 :run_demo
-call "%~f0" win64
+call "%~f0" windows
 if errorlevel 1 exit /b 1
-"%BIN%\vt7_pt_demo_win64.exe"
+"%BIN%\vt7_pt_demo_windows.exe"
 exit /b %ERRORLEVEL%
 
 :run_demo_sdl
