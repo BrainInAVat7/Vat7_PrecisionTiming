@@ -13,6 +13,7 @@ POSIX_DEMO = bin/vt7_pt_demo_posix
 SDL_DEMO = bin/vt7_pt_demo_sdl
 
 # Build flags and extensions
+# Had to remove =5 from Wimplicit-fallthrough to compile with clang.
 CFLAGS = -std=c17 \
 	-I./include \
 	-Werror \
@@ -26,7 +27,7 @@ CFLAGS = -std=c17 \
 	-Wundef \
 	-Wnull-dereference \
 	-Wdouble-promotion \
-	-Wimplicit-fallthrough=5
+	-Wimplicit-fallthrough
 
 all: posix
 
