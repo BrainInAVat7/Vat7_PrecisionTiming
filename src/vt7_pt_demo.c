@@ -34,7 +34,7 @@ int main (void)
 	uint64_t next_tick_count = vt7_pt_count() + frequency;
 
 	printf("Seconds: %d\n", seconds);
-	printf("Count: %"PRIu64"\n", count);
+	printf("Count: %"PRIu64"\n\n", count);
 
 	while (seconds < VAT7_PT_DEMO_SECONDS_TO_RUN)
 	{
@@ -43,11 +43,13 @@ int main (void)
 		{
 			seconds++;
 			printf("Seconds: %d\n", seconds);
-			printf("Count: %"PRIu64"\n", count);
+			printf("Count: %"PRIu64"\n\n", count);
 			next_tick_count += frequency;
 		}
 	}
 	puts("\nVat7 Precision Timing Demo Complete\n");
+	puts("press ENTER to end");
+	getchar();
 
 	return EXIT_SUCCESS;
 }
