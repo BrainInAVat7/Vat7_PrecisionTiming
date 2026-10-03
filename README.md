@@ -36,17 +36,6 @@ as a portability fallback for non-Windows, non-POSIX systems.
 ---
 
 
-## Demos
-
-The source code includes a small demo program that prints the frequency
-value, then each second prints the number of seconds and current count
-value. The demo illustrates the second usage pattern described above, and
-it can be used to confirm the utility is working in the user's OS or
-development environment.
-
----
-
-
 ## Dependencies
 
 The utility is compatible with windows and POSIX and has no
@@ -116,7 +105,8 @@ added to the users PATH.
 The Makefile includes a windows cross-compilation option using mingw.
 Using the Windows subsystem for Linux or by installing GNU build tools
 onto a Windows machine, the demos can be built by running
-*make windows*.
+*make windows*. This option of course requires that the mingw-gcc cross-
+compiler be installed.
 
 ---
 
@@ -197,13 +187,27 @@ while (seconds <= seconds_to_run)
 *No source code was generated using AI tools in this or any other
 Vat7 project*
 
-ChatGPT was used to generate the build.bat file used to automate
-building the demos natively on windows. I do not work on windows and
-lack familiarity with its shell command and bat file conventions.
+ChatGPT was used to generate the original version of the build.bat
+file used to automate building the demos natively on windows.
 ChatGPT was given a hand-written makefile and prompted to generate a
 build.bat file that would exhibit equivalent behavior. The file was
-then audited for correctness, and then further edited by hand.
+then audited for correctness, and subsequently updated and altered
+by hand. The current version is very different from what what the AI
+initially generated.
 
 I have also used LLM's as a resource for searching and explaining
 documentation, identifying bugs/typos, and general information gathering.
 In short, I have used it as a faster and more amiable *Stack Exchange*.
+
+
+---
+
+
+## Future Development Plans
+
+The only currently planned additional feature is a test version that
+returns manually set values when the timing functions are called. This
+would allow programs using the Vat7_PrecisionTiming API to be compiled
+with the test version when running automated tests that manually set
+timing values to ensure correct program behavior given specific timing
+scenarios.
