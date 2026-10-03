@@ -1,20 +1,36 @@
 # Makefile for posix Vat7 Precision Timing
 
-.PHONY: all clean posix sdl run-demo run-demo-sdl windows
+.PHONY: all clean posix sdl windows
 
-# File info
-POSIX_SRC = src/vt7_pt_posix.c \
-      src/vt7_pt_demo.c
+# Demo 1 File Info
+POSIX_SRC_DEMO_1 = src/vt7_pt_posix.c \
+      src/vt7_pt_pattern_1_demo.c
 
-SDL_SRC = src/vt7_pt_sdl.c \
-      src/vt7_pt_demo.c
+SDL_SRC_DEMO_1 = src/vt7_pt_sdl.c \
+      src/vt7_pt_pattern_1_demo.c
 
-WINDOWS_SRC = src/vt7_pt_windows.c \
-	src/vt7_pt_demo.c
+WIN_SRC_DEMO_1 = src/vt7_pt_windows.c \
+	src/vt7_pt_pattern_1_demo.c
 
-POSIX_DEMO = bin/vt7_pt_demo_posix
-SDL_DEMO = bin/vt7_pt_demo_sdl
-WINDOWS_DEMO = bin/vt7_pt_demo_windows.exe
+POSIX_DEMO_1 = bin/vt7_pt_posix_pattern_1_demo
+SDL_DEMO_1 = bin/vt7_pt_sdl_pattern_1_demo
+WIN_DEMO_1 = bin/vt7_pt_windows_pattern_1_demo.exe
+
+
+# Demo 1 File Info
+POSIX_SRC_DEMO_2 = src/vt7_pt_posix.c \
+      src/vt7_pt_pattern_2_demo.c
+
+SDL_SRC_DEMO_2 = src/vt7_pt_sdl.c \
+      src/vt7_pt_pattern_2_demo.c
+
+WIN_SRC_DEMO_2 = src/vt7_pt_windows.c \
+	src/vt7_pt_pattern_2_demo.c
+
+POSIX_DEMO_2 = bin/vt7_pt_posix_pattern_2_demo
+SDL_DEMO_2 = bin/vt7_pt_sdl_pattern_2_demo
+WIN_DEMO_2 = bin/vt7_pt_windows_pattern_2_demo.exe
+
 
 # Build flags and extensions
 # Had to remove =5 from Wimplicit-fallthrough to compile with clang.
@@ -36,33 +52,38 @@ CFLAGS = -std=c17 \
 all: posix
 
 
-$(POSIX_DEMO): $(POSIX_SRC)
+$(POSIX_DEMO_1): $(POSIX_SRC_DEMO_1)
 	mkdir -p bin
-	$(CC) $(CFLAGS) -o $(POSIX_DEMO) $(POSIX_SRC)
+	$(CC) $(CFLAGS) -o $(POSIX_DEMO_1) $(POSIX_SRC_DEMO_1)
 
-$(SDL_DEMO): $(SDL_SRC)
+$(SDL_DEMO_1): $(SDL_SRC_DEMO_1)
 	mkdir -p bin
-	$(CC) $(CFLAGS) -o $(SDL_DEMO) $(SDL_SRC) -lSDL3
+	$(CC) $(CFLAGS) -o $(SDL_DEMO_1) $(SDL_SRC_DEMO_1) -lSDL3
 
-
-$(WINDOWS_DEMO): $(WINDOWS_SRC)
+$(WIN_DEMO_1): $(WIN_SRC_DEMO_1)
 	mkdir -p bin
-	i686-w64-mingw32-gcc $(CFLAGS) -o $(WINDOWS_DEMO) $(WINDOWS_SRC)
+	i686-w64-mingw32-gcc $(CFLAGS) -o $(WIN_DEMO_1) $(WIN_SRC_DEMO_1)
 
-posix: $(POSIX_DEMO)
+$(POSIX_DEMO_2): $(POSIX_SRC_DEMO_2)
+	mkdir -p bin
+	$(CC) $(CFLAGS) -o $(POSIX_DEMO_2) $(POSIX_SRC_DEMO_2)
+
+$(SDL_DEMO_1): $(SDL_SRC_DEMO_2)
+	mkdir -p bin
+	$(CC) $(CFLAGS) -o $(SDL_DEMO_2) $(SDL_SRC_DEMO_2) -lSDL3
+
+$(WIN_DEMO_1): $(WIN_SRC_DEMO_2)
+	mkdir -p bin
+	i686-w64-mingw32-gcc $(CFLAGS) -o $(WIN_DEMO_2) $(WIN_SRC_DEMO_2)
+
+posix: $(POSIX_DEMO_1) $(POSIX_DEMO_2)
 
 
-sdl: $(SDL_DEMO)
+sdl: $(SDL_DEMO_1) $(SDL_DEMO_2)
 
 
-windows: $(WINDOWS_DEMO)
+windows: $(WIN_DEMO_1) $(WIN_DEMO_2)
 
-
-run-demo: $(POSIX_DEMO)
-	./$(POSIX_DEMO)
-
-run-demo-sdl: $(SDL_DEMO)
-	./$(SDL_DEMO)
 
 clean:
 	rm -rf bin
