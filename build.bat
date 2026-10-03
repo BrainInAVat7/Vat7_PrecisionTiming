@@ -21,14 +21,14 @@ exit /b 1
 
 :windows
 if not exist "%BIN%" mkdir "%BIN%"
-cl %CFLAGS% /Fe:"%BIN%\vt7_pt_demo_windows.exe" ^
+cl %CFLAGS% /Fo:%BIN%\ /Fe:"%BIN%\vt7_pt_demo_windows.exe" ^
     src\vt7_pt_windows.c ^
     src\vt7_pt_demo.c
 exit /b %ERRORLEVEL%
 
 :sdl
 if not exist "%BIN%" mkdir "%BIN%"
-cl %CFLAGS% /Fe:"%BIN%\vt7_pt_demo_sdl.exe" ^
+cl %CFLAGS% /Fo:%BIN%\ /Fe:"%BIN%\vt7_pt_demo_sdl.exe" ^
     src\vt7_pt_sdl.c ^
     src\vt7_pt_demo.c ^
     /link SDL3.lib
