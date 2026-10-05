@@ -17,7 +17,7 @@ SDL_DEMO_1 = bin/vt7_pt_sdl_pattern_1_demo
 WIN_DEMO_1 = bin/vt7_pt_windows_pattern_1_demo.exe
 
 
-# Demo 1 File Info
+# Demo 2 File Info
 POSIX_SRC_DEMO_2 = src/vt7_pt_posix.c \
       src/vt7_pt_pattern_2_demo.c
 

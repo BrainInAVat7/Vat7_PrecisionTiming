@@ -7,6 +7,7 @@ A thin wrapper over POSIX, Windows, and SDL3 precision timing functions.
 
 ---
 
+
 ## Summary
 
 Vat7 is a collection of related programs I developed for learning
@@ -74,7 +75,7 @@ will all build an executable binary for each demo and put them into
 
 *Posix Systems: Linux, Mac, BSD, Haiku, etc.*
 A *Makefile* is included to generate the demo binary on POSIX systems.
-Simply run: *Make* to compile the demo.
+Simply run: *Make* in the terminal to compile the demo.
 
 The SDL version of the demo can be built with: *Make sdl*
 
@@ -95,11 +96,12 @@ There are two options for automatically building the demos on Windows:
 
 *Option 1*
 For Windows users a *build.bat* file is included. It functions identically
-to the POSIX *Makefile*. All the above-described commands can be used
-with '*./build.bat*' substituted for '*make*'. The build.bat file uses
-the Microsoft Visual Studio Compiler, so it must be installed. *build.bat*
-must be run from the Visual Studio internal terminal, or cl.exe must be
-added to the users PATH.
+to the POSIX *Makefile*. Run *./build.bat* in the terminal to build the
+demos. *./build.bat sdl* will build the SDL version if SDL is installed.
+*build.bat clean* will remove all binary files produced in the build process.
+The build.bat file uses the Microsoft Visual Studio Compiler, so it must be
+installed. *build.bat* must be run from the Visual Studio internal terminal,
+or cl.exe must be added to the user's PATH.
 
 *Option 2*
 The Makefile includes a windows cross-compilation option using mingw.
