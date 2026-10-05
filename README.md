@@ -1,8 +1,12 @@
 # Vat7 Precision Timing
 
+Copyright (c) 2026 BrainInAVat7
+License: AGPL-3.0
+
 A thin wrapper over POSIX, Windows, and SDL3 precision timing functions.
 
 ---
+
 
 ## Summary
 
@@ -20,61 +24,91 @@ it can be compiled to use SDL3.
 
 SDL3 alone provides more or less the same abstraction; however,
 the native versions of this more focused utility allows for a
-focused precision timing API with less overhead.
+focused precision timing API without pulling in all of SDL's
+functionality.
 
 Frankly, the SDL3 version is included because it is trivial to
 write and because this utility was split off from a more general
 SDL3 encapsulation layer. However, the SDL3 version of this utility
 can be useful if the program is already using SDL3 elsewhere and
 there is reason to allow it to be easily swapped out. Or it can serve
-as a portability fallback for non-Windows non-POSIX systems.
-
----
-
-
-## Demo
-
-The source code includes a small demo program that prints the frequency
-value, then each second prints the number of seconds and current count
-value. The demo illustrates the second usage pattern described above, and
-it can be used to confirm the utility is working in the user's OS or
-development environment.
+as a portability fallback for non-Windows, non-POSIX systems.
 
 ---
 
 
 ## Dependencies
-*This utility requires a 64bit environment*
 
 The utility is compatible with windows and POSIX and has no
 dependencies beyond the OS environment itself.
 
 The SDL3 version requires SDL3 (obviously), and is compatible with
-and SDL3 supported 64bit environment.
+any SDL3 supported environment.
 
 ---
 
 
 ## Installation
+
 Clone the repository using:
-*git clone https://github.com/BrainInAVat7/Vat7_PrecisionTiming.git
+*git clone https://<no link>github.com/BrainInAVat7/Vat7_PrecisionTiming*
 
-The source files and header are then available for inclusion and
-compilation with local projects as the user sees fit.
+Or, download and extract the zipped source code.
+To use the source code in your own project, simply make sure the
+header file "vat7_precision_timing.h" is in your include path and
+that the relevant source file for your platform from the "src"
+directory is included as a source file in whatever build system
+or compiler call you use.
 
-**Running the demo**
+Two demos have been included illustrating each of the two usage patterns
+detailed below. These can also be used to test that the code is working
+in your environment. For convenience, a makefile and a build.bat file
+have been included to automate building the demos.
+
+
+**Running the demos**
+
+Pre-compiled binaries can be downloaded directly, or the demos can be
+built from source manually or using the following instructions, which
+will all build an executable binary for each demo and put them into
+"*Vat7_PrecisionTiming/bin*".
+
+*Posix Systems: Linux, Mac, BSD, Haiku, etc.*
 A *Makefile* is included to generate the demo binary on POSIX systems.
-Simply run: *Make* to compile the demo. It can be compiled and run
-using: *Make run-demo*
+Simply run: *Make* in the terminal to compile the demo.
 
-The SDL version of the demo can be generated with: *Make sdl*
-The SDL version demo can be compiled and run with: *Make sdl-demo*
+The SDL version of the demo can be built with: *Make sdl*
 
 *make clean* will delete all demo binaries.
 
+Obviously, compiling the SDL3 version requires that SDL3 is installed
+and that its headers are in the include path for the linker. The makefile
+has been written to work with the default build tools on standard posix
+systems, so it should work out of the box on Linux, Mac, BSD, Haiku, etc.
+
+Mac users may need to manually install the mac developer tools. This can
+be done easily by entering make -v into a terminal. If it is not installed,
+the OS will prompt the user to install it automatically.
+
+*Windows*
+
+There are two options for automatically building the demos on Windows:
+
+*Option 1*
 For Windows users a *build.bat* file is included. It functions identically
-to the POSIX *Makefile*. All the above-described commands can be used
-with '*build.bat*' substituted for '*make*'.
+to the POSIX *Makefile*. Run *./build.bat* in the terminal to build the
+demos. *./build.bat sdl* will build the SDL version if SDL is installed.
+*build.bat clean* will remove all binary files produced in the build process.
+The build.bat file uses the Microsoft Visual Studio Compiler, so it must be
+installed. *build.bat* must be run from the Visual Studio internal terminal,
+or cl.exe must be added to the user's PATH.
+
+*Option 2*
+The Makefile includes a windows cross-compilation option using mingw.
+Using the Windows subsystem for Linux or by installing GNU build tools
+onto a Windows machine, the demos can be built by running
+*make windows*. This option of course requires that the mingw-gcc cross-
+compiler be installed.
 
 ---
 
@@ -117,11 +151,12 @@ There are two primary usage patterns, though others are certainly possible.
 
 ```C
 uint64_t freq = vt7_pt_frequency();
-uint64_t initial_count = vt7_pt_count();
+uint64_t start_count = vt7_pt_count();
 
 //do stuff
 
-double seconds = (double)(vt7_pt_count() - initial_count) / (double)freq;
+uint64_t end_count = vt7_pt_count();
+double seconds = (double)(end_count - start_count) / (double)freq;
 ```
 
 
@@ -129,10 +164,9 @@ double seconds = (double)(vt7_pt_count() - initial_count) / (double)freq;
 
 ```C
 uint64_t freq = vt7_pt_frequency();
-uint64_t seconds_to_run = 10;
-uint64_t last_count = vt7_pt_count();
-uint64_t next_tick_count = last_count + freq;
+uint64_t next_tick_count = vt7_pt_count() + freq;
 uint64_t seconds = 0;
+uint64_t seconds_to_run = 10;
 
 while (seconds <= seconds_to_run)
 {
@@ -142,8 +176,7 @@ while (seconds <= seconds_to_run)
     if now >= next_tick_count)
     {
         seconds++;
-        // current count + count/second - (amount count overshot this tick)
-        next_tick_count = now + freq - (now - next_tick_count);
+        next_tick_count += freq;
     }
 }
 ```
@@ -153,11 +186,30 @@ while (seconds <= seconds_to_run)
 
 ## Use of AI
 
-*No code was generated using AI tools in this project*
+*No source code was generated using AI tools in this or any other
+Vat7 project*
 
-ChatGPT was used to generate the build.bat. It was given a hand-written
-makefile and prompted to generate a build.bat file that would exhibit
-equivalent behavior. The file was then audited for correctness.
+ChatGPT was used to generate the original version of the build.bat
+file used to automate building the demos natively on windows.
+ChatGPT was given a hand-written makefile and prompted to generate a
+build.bat file that would exhibit equivalent behavior. The file was
+then audited for correctness, and subsequently updated and altered
+by hand. The current version is very different from what what the AI
+initially generated.
 
-I have used AI as a resource for searching and explaining documentation,
-identifying bugs/typos, and general information gathering.
+I have also used LLM's as a resource for searching and explaining
+documentation, identifying bugs/typos, and general information gathering.
+In short, I have used it as a faster and more amiable *Stack Exchange*.
+
+
+---
+
+
+## Future Development Plans
+
+The only currently planned additional feature is a test version that
+returns manually set values when the timing functions are called. This
+would allow programs using the Vat7_PrecisionTiming API to be compiled
+with the test version when running automated tests that manually set
+timing values to ensure correct program behavior given specific timing
+scenarios.
