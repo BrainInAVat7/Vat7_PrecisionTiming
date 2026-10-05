@@ -68,11 +68,11 @@ $(POSIX_DEMO_2): $(POSIX_SRC_DEMO_2)
 	mkdir -p bin
 	$(CC) $(CFLAGS) -o $(POSIX_DEMO_2) $(POSIX_SRC_DEMO_2)
 
-$(SDL_DEMO_1): $(SDL_SRC_DEMO_2)
+$(SDL_DEMO_2): $(SDL_SRC_DEMO_2)
 	mkdir -p bin
 	$(CC) $(CFLAGS) -o $(SDL_DEMO_2) $(SDL_SRC_DEMO_2) -lSDL3
 
-$(WIN_DEMO_1): $(WIN_SRC_DEMO_2)
+$(WIN_DEMO_2): $(WIN_SRC_DEMO_2)
 	mkdir -p bin
 	i686-w64-mingw32-gcc $(CFLAGS) -o $(WIN_DEMO_2) $(WIN_SRC_DEMO_2)
 
