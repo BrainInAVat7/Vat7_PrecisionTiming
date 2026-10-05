@@ -1,5 +1,9 @@
 /* Author: BrainInAVat7
  * Date: 09/16/2026
+ * COPYRIGHT: (c) 2026 BrainInAVat7
+ * LICENSE: AGPL-3.0
+ *
+ * Vat7 Precision Timing Utility
  *
  * This timing helper provides a thin abstraction over
  * POSIX, Windows, and SDL3 functions to get a precision
@@ -31,22 +35,14 @@
 uint64_t vt7_pt_count (void)
 {
 	struct timespec ts;
-	/* This returns 0 on success, -1 on failure */
-	int failure = clock_gettime(CLOCK_MONOTONIC, &ts);
-
-	if (!failure)
-	{
-
-		return (uint64_t)ts.tv_sec * VAT7_NANOSECONDS_PER_SECOND
-			+ (uint64_t)ts.tv_nsec;
-	}
-	else
-	{
-		/* Real value can never realistically be 0 because
-		 * that would represent the exact nanosecond the
-		 * timer initialized, usually system start time */
-		return 0;
-	}
+	/* This returns 0 on success, -1 on failure
+	 * but realistically, it should never fail. The SDL
+	 * and Win64 versions do not return error values
+	 * so ignoring it here for parity
+	 */
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return (uint64_t)ts.tv_sec * VAT7_NANOSECONDS_PER_SECOND
+		+ (uint64_t)ts.tv_nsec;
 }
 
 

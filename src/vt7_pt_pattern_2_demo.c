@@ -1,7 +1,9 @@
-/* A simple manual test of the Vat7 timing abstraction
- *
- * Author: BrainInAVat7
+/* Author: BrainInAVat7
  * Date: 09/27/26
+ * COPYRIGHT: (c) 2026 BrainInAVat7
+ * LICENSE: AGPL-3.0
+ *
+ * A simple demo of the Vat7 Precision Timing Utility
  *
  * The program prints the precision timing frequency value,
  * then for 20 seconds will print the precision count value
@@ -18,33 +20,36 @@
 #include <stdlib.h>
 
 
+#define VAT7_PT_DEMO_SECONDS_TO_RUN 20
+
+
 int main (void)
 {
 	uint64_t frequency = vt7_pt_frequency();
-	puts("\n\nVat7 Timing Abstraction Demo\n");
+	puts("\n\nVat7 Precision Timing Demo\n");
 	printf("Precision Timing Frequency: %"PRIu64"\n\n", frequency);
 
 	int seconds = 0;
-	uint64_t last_count = vt7_pt_count();
-	uint64_t next_tick_count = last_count + frequency;
-	uint64_t accumulated_count = last_count;
-	printf("Seconds: %d\n", seconds);
-	printf("Count: %"PRIu64"\n", last_count);
+	uint64_t count = vt7_pt_count();
+	uint64_t next_tick_count = vt7_pt_count() + frequency;
 
-	while (seconds < 20)
+	printf("Seconds: %d\n", seconds);
+	printf("Count: %"PRIu64"\n\n", count);
+
+	while (seconds < VAT7_PT_DEMO_SECONDS_TO_RUN)
 	{
-		uint64_t count = vt7_pt_count();
-		accumulated_count += count - last_count;
-		if (accumulated_count >= next_tick_count)
+		count = vt7_pt_count();
+		if (count >= next_tick_count)
 		{
 			seconds++;
-			next_tick_count += frequency;
 			printf("Seconds: %d\n", seconds);
-			printf("Count: %"PRIu64"\n", count);
+			printf("Count: %"PRIu64"\n\n", count);
+			next_tick_count += frequency;
 		}
-		last_count = count;
 	}
-	puts("\nDemo Complete\n");
+	puts("\nVat7 Precision Timing Demo Complete\n");
+	puts("press ENTER to end");
+	getchar();
 
 	return EXIT_SUCCESS;
 }
