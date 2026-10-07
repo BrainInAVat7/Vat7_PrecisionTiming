@@ -85,5 +85,23 @@ sdl: $(SDL_DEMO_1) $(SDL_DEMO_2)
 windows: $(WIN_DEMO_1) $(WIN_DEMO_2)
 
 
+posix-demo1: $(POSIX_DEMO_1)
+	./$(POSIX_DEMO_1)
+
+posix-demo2: $(POSIX_DEMO_2)
+	./$(POSIX_DEMO_2)
+
+sdl-demo1: $(SDL_DEMO_1)
+	./$(SDL_DEMO_1)
+
+sdl-demo2: $(SDL_DEMO_2)
+	./$(SDL_DEMO_2)
+
+windows-demo1: $(WINDOWS_DEMO_1)
+	./$(WINDOWS_DEMO_1)
+
+windows-demo2: $(WINDOWS_DEMO_2)
+	./$(WINDOWS_DEMO_2)
+
 clean:
 	rm -rf bin

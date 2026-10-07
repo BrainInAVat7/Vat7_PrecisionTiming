@@ -67,16 +67,19 @@ have been included to automate building the demos.
 
 **Running the demos**
 
-Pre-compiled binaries can be downloaded directly, or the demos can be
-built from source manually or using the following instructions, which
-will all build an executable binary for each demo and put them into
-"*Vat7_PrecisionTiming/bin*".
-
 *Posix Systems: Linux, Mac, BSD, Haiku, etc.*
 A *Makefile* is included to generate the demo binary on POSIX systems.
 Simply run: *Make* to compile the demo.
 
 The SDL version of the demo can be built with: *Make sdl*
+
+The individual demos can be run using the following commands. If the demo
+is not built, the run command will build it.
+
+*make posix-demo1*
+*make posix-demo2*
+*make sdl-demo1*
+*make sdl-demo2*
 
 *make clean* will delete all demo binaries.
 
@@ -94,12 +97,24 @@ the OS will prompt the user to install it automatically.
 There are two options for automatically building the demos on Windows:
 
 *Option 1*
-For Windows users a *build.bat* file is included. It functions identically
-to the POSIX *Makefile*. All the above-described commands can be used
-with '*./build.bat*' substituted for '*make*'. The build.bat file uses
+For Windows users a *build.bat* file is included. The build.bat file uses
 the Microsoft Visual Studio Compiler, so it must be installed. *build.bat*
 must be run from the Visual Studio internal terminal, or cl.exe must be
 added to the users PATH.
+
+Running *./build.bat* will build the native windows version, as will
+*./build.bat windows*. To build the sdl version run *./build.bat sdl*.
+
+The demos can be individually run using the following commands. If the
+relevant demo is not built, the run command will build it.
+
+*./build.bat demo1*
+*./build.bat demo2*
+*./build.bat demo1sdl*
+*./build.bat demo2sdl*
+
+The command *./build.bat clean* will delete all built binaries.
+
 
 *Option 2*
 The Makefile includes a windows cross-compilation option using mingw.
@@ -107,6 +122,13 @@ Using the Windows subsystem for Linux or by installing GNU build tools
 onto a Windows machine, the demos can be built by running
 *make windows*. This option of course requires that the mingw-gcc cross-
 compiler be installed.
+
+The demos can be individually run using the following commands. If the
+relevant demo is not built, the run command will build it.
+
+*make windows-demo1*
+*make windows-demo2*
+
 
 ---
 
