@@ -39,22 +39,22 @@ exit /b %ERRORLEVEL%
 
 :demo1
 if not exist bin\vt7_pt_windows_pattern_1_demo.exe call %0
-.\vt7_pt_windows_pattern_1_demo.exe
+.\bin\vt7_pt_windows_pattern_1_demo.exe
 exit /b %ERRORLEVEL%
 
 :demo2
 if not exist bin\vt7_pt_windows_pattern_2_demo.exe call %0
-.\vt7_pt_windows_pattern_2_demo.exe
+.\bin\vt7_pt_windows_pattern_2_demo.exe
 exit /b %ERRORLEVEL%
 
 :demo1sdl
 if not exist bin\vt7_pt_windows_sdl_pattern_1_demo.exe call %0
-.\vt7_pt_windows_sdl_pattern_1_demo.exe
+.\bin\vt7_pt_windows_sdl_pattern_1_demo.exe
 exit /b %ERRORLEVEL%
 
 :demo2sdl
 if not exist bin\vt7_pt_windows_sdl_pattern_2_demo.exe call %0
-.\vt7_pt_windows_sdl_pattern_2_demo.exe
+.\bin\vt7_pt_windows_sdl_pattern_2_demo.exe
 exit /b %ERRORLEVEL%
 
 :clean
