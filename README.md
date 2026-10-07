@@ -103,18 +103,18 @@ the Microsoft Visual Studio Compiler, so it must be installed. *build.bat*
 must be run from the Visual Studio internal terminal, or cl.exe must be
 added to the users PATH.
 
-Running *./build.bat* will build the native windows version, as will
-*./build.bat windows*. To build the sdl version run *./build.bat sdl*.
+Running *.\build.bat* will build the native windows version, as will
+*.\build.bat windows*. To build the sdl version run *.\build.bat sdl*.
 
 The demos can be individually run using the following commands. If the
 relevant demo is not built, the run command will build it.
 
-*./build.bat demo1*
-*./build.bat demo2*
-*./build.bat demo1sdl*
-*./build.bat demo2sdl*
+*.\build.bat demo1*
+*.\build.bat demo2*
+*.\build.bat demo1sdl*
+*.\build.bat demo2sdl*
 
-The command *./build.bat clean* will delete all built binaries.
+The command *.\build.bat clean* will delete all built binaries.
 
 
 *Option 2*
@@ -125,7 +125,7 @@ onto a Windows machine, the demos can be built by running
 compiler be installed.
 
 The demos can be individually run using the following commands. If the
-relevant demo is not built, the run command will build it.
+relevant demo is not built, the run command will build the demos.
 
 *make windows-demo1*
 *make windows-demo2*
