@@ -1,6 +1,9 @@
 # Makefile for posix Vat7 Precision Timing
 
-.PHONY: all clean posix sdl windows
+.PHONY: all clean \
+	posix sdl windows \
+	posix-demo1 posix-demo2 sdl-demo1 \
+	sdl-demo2 windows-demo1 windows-demo2
 
 # Demo 1 File Info
 POSIX_SRC_DEMO_1 = src/vt7_pt_posix.c \
