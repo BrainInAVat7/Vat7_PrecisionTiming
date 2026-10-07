@@ -7,6 +7,7 @@ A thin wrapper over POSIX, Windows, and SDL3 precision timing functions.
 
 ---
 
+
 ## Summary
 
 Vat7 is a collection of related programs I developed for learning
@@ -69,7 +70,7 @@ have been included to automate building the demos.
 
 *Posix Systems: Linux, Mac, BSD, Haiku, etc.*
 A *Makefile* is included to generate the demo binary on POSIX systems.
-Simply run: *Make* to compile the demo.
+Simply run: *Make* in the terminal to compile the demo.
 
 The SDL version of the demo can be built with: *Make sdl*
 
@@ -128,6 +129,8 @@ relevant demo is not built, the run command will build it.
 
 *make windows-demo1*
 *make windows-demo2*
+
+Currently, the makefile is not setup to cross compile the SDL version.
 
 
 ---

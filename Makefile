@@ -17,7 +17,7 @@ SDL_DEMO_1 = bin/vt7_pt_sdl_pattern_1_demo
 WIN_DEMO_1 = bin/vt7_pt_windows_pattern_1_demo.exe
 
 
-# Demo 1 File Info
+# Demo 2 File Info
 POSIX_SRC_DEMO_2 = src/vt7_pt_posix.c \
       src/vt7_pt_pattern_2_demo.c
 
@@ -68,11 +68,11 @@ $(POSIX_DEMO_2): $(POSIX_SRC_DEMO_2)
 	mkdir -p bin
 	$(CC) $(CFLAGS) -o $(POSIX_DEMO_2) $(POSIX_SRC_DEMO_2)
 
-$(SDL_DEMO_1): $(SDL_SRC_DEMO_2)
+$(SDL_DEMO_2): $(SDL_SRC_DEMO_2)
 	mkdir -p bin
 	$(CC) $(CFLAGS) -o $(SDL_DEMO_2) $(SDL_SRC_DEMO_2) -lSDL3
 
-$(WIN_DEMO_1): $(WIN_SRC_DEMO_2)
+$(WIN_DEMO_2): $(WIN_SRC_DEMO_2)
 	mkdir -p bin
 	i686-w64-mingw32-gcc $(CFLAGS) -o $(WIN_DEMO_2) $(WIN_SRC_DEMO_2)
 
