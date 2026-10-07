@@ -6,6 +6,10 @@ set "CFLAGS=/std:c17 /Iinclude /W4 /WX /permissive-"
 if "%1"=="" goto windows
 if /I "%1"=="windows" goto windows
 if /I "%1"=="sdl" goto sdl
+if /I "%1"=="demo1" goto demo1
+if /I "%1"=="demo2" goto demo2
+if /I "%1"=="demo1" goto demo1sdl
+if /I "%1"=="demo2" goto demo2sdl
 if /I "%1"=="clean" goto clean
 
 echo Usage: build.bat [windows^|sdl^|clean]
@@ -31,6 +35,26 @@ cl %CFLAGS% /Fobin\ /Febin\vt7_pt_windows_sdl_pattern_2_demo.exe ^
     src\vt7_pt_sdl.c ^
     src\vt7_pt_pattern_2_demo.c ^
     /link SDL3.lib
+exit /b %ERRORLEVEL%
+
+:demo1
+if not exist bin\vt7_pt_windows_pattern_1_demo.exe call %0
+.\bin\vt7_pt_windows_pattern_1_demo.exe
+exit /b %ERRORLEVEL%
+
+:demo2
+if not exist bin\vt7_pt_windows_pattern_2_demo.exe call %0
+.\bin\vt7_pt_windows_pattern_2_demo.exe
+exit /b %ERRORLEVEL%
+
+:demo1sdl
+if not exist bin\vt7_pt_windows_sdl_pattern_1_demo.exe call %0
+.\bin\vt7_pt_windows_sdl_pattern_1_demo.exe
+exit /b %ERRORLEVEL%
+
+:demo2sdl
+if not exist bin\vt7_pt_windows_sdl_pattern_2_demo.exe call %0
+.\bin\vt7_pt_windows_sdl_pattern_2_demo.exe
 exit /b %ERRORLEVEL%
 
 :clean
